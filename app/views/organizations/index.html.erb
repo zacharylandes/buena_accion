@@ -1,0 +1,72 @@
+<div class 'index-section'>
+  <div id="search">
+    <% if current_user %>
+    <%= form_for @organization do |f| %>
+    <%= f.label :state %><br/>
+    <%= f.text_field :state, placeholder: :city%><br/>
+    <%= f.label :city %><br/>
+    <%= f.text_field :city, placeholder: :city%><br/>
+    <%= f.submit "submit", class: :submit %>
+  </div>
+  <div class="org-list-container">
+    <%= will_paginate @orgs %>
+  <table>
+
+    <tr>
+      <th>Organization</th>
+      <th>Location</th>
+      <th>Rating</th>
+    </tr>
+    <% @orgs.reverse.each do |org| %>
+    <tr>
+      <td><%= link_to org.name, organization_path(org) %></td>
+      <td> <%= org.city %></td>
+    <td> <%= org.score %>  </td>
+    <% end %>
+  <% end %>
+  </table>
+    <div id="map">
+    </div>
+  </div>
+</div>
+    <script>
+
+      function iniMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 39.024, lng: -104.887}
+        });
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var locations = [
+        <% @orgs.each do |org| %>
+          <% if org.latitude %>
+            {lat: <%= org.latitude %>, lng: <%= org.longitude %>},
+          <% end %>
+        <% end  %>
+      ]
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcWT4c5ykv24rEk2w9kRrCaUOfNCf6is&callback=iniMap">
+    </script>
+      <% end %>

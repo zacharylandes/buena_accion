@@ -1,0 +1,109 @@
+/*
+    Theme Name: Amoeba
+    Theme URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+*/
+
+// /* ==== Google font ==== */
+// @import url('https://fonts.googleapis.com/css?family=Lato:400,300,700,900');
+// /* === fontawesome === */
+// @import url('font-awesome.css');
+// /* ==== overwrite bootstrap standard ==== */
+// @import url('overwrite.css');
+// @import url('animate.css');
+/*==========================================================================
+  General
+  ========================================================================== */
+
+body {
+	color:#2C373F;
+	background: #f7f7f7;
+	font-size: 16px;
+font-family: 'Molengo', sans-serif;
+	line-height: 1.6em;
+	font-weight: 300;
+	text-shadow: none;
+  margin: 0;
+	background-size: cover;
+	background-image: url("greyblue.svg");
+}
+
+header a:visited, header a {
+	color: #CAE1F1;
+	text-decoration: none;
+}
+ a:visited, a {
+	color:  #485C69;
+	text-decoration: none;
+}
+header h1{
+	font-size: 50px;
+	font-family: 'Shrikhand', cursive;
+}
+header p {
+}
+header {
+	padding:30px;
+	height: 120px;
+	color: #CAE1F1;
+	background-color: #485C69;
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-direction: row;
+}
+.login{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: baseline;
+}
+#search {
+	margin: 30px;
+}
+.index-section{
+  width: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+
+}
+.org-list-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+.org-stats{
+	margin-left:120px;
+	width: 30%;
+  display: flex;
+  flex-direction: column;
+
+}
+.container{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+table {
+	margin:30px;
+}
+
+#mission{
+}
+#mission #mission-text{
+  transition: all .01s ease;
+  display:none;
+}
+#mission:click #mission-text{
+  display:inline;
+}
+
+ #map {
+  height: 300px;
+  width: 300px;
+	margin:40px;
+ }
