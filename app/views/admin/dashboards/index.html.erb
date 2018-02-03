@@ -1,0 +1,28 @@
+<h1>admin place</h1>
+
+<div class= 'need-section'>
+  <% if current_user %>
+    <%= form_for [:admin, @need] do |f| %>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name%><br/>
+    <%= f.label :category %><br/>
+    <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></br>
+    <%= f.label :amount %><br/>
+    <%= f.number_field :amount%><br/>
+    <%= f.submit "submit"%>
+    <% end %>
+  <% end %>
+
+  <div class = 'need-card-container'>
+  <% if @needs.count > 0 %>
+    <% @needs.each do |need| %>
+      <div class = 'need-card'>
+        <p><%= need.name %></p>
+        <p><%= need.category.name%></p>
+        <div class="rect red" data-percent="<%=need.amount%>">
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>

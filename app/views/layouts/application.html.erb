@@ -1,41 +1,83 @@
 
-
 <!DOCTYPE html>
 <html>
   <head>
     <title>Buena Accion</title>
+      <meta charset="utf-8">
+  <title>BizPage Bootstrap Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Molengo&amp;subset=latin-ext" rel="stylesheet">
-
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <style media="screen">
     </style>
   </head>
   <body >
-    <header>
-        <p><%= link_to "Home", organizations_path %></p>
-        <!-- <%= image_tag('hand-shake.png') %> -->
-      <h1> Buena Accion</h1>
-        <% flash.each do |type, message| %>
-          <%= content_tag :div, message.html_safe, class: type %>
-        <% end %>
-        <% if current_user %>
-        <div class = "login-container">
-        <div class ="login">
-          Signed in as <strong><%= current_user.name %></strong>
-          <%= link_to "Sign out", signout_path, id: "sign_out" %>
-        </div>
-        <% else %>
-        <div class ="login">
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-        <% end %>
+  <header id="header">
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message.html_safe, class: type %>
+    <% end %>
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#intro" class="scrollto">Buena Accion</a></h1>
       </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+            <% if current_user %>
+              <li>Signed in as <strong><%= current_user.name %></strong></li>
+              <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+            <% else %>
+              <li><%= link_to "Sign in as a nonpofit with Google", "/auth/google_oauth2?role=1" ,id: "sign_in" %></li>
+              <li>  <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+            <% end %>
+          <li class="menu-has-children"><a href="">Drop Down</a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 5</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
     </div>
-    </header>
-    <div>
-    <%= yield %>
+  </header>
+
+    <div class='index-section'>
+        <%= yield %>
     </div>
+    </section>
+    <footer id="footer">
+      this indo
+    </footer>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>

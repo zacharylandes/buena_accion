@@ -1,58 +1,52 @@
-<div class 'index-section'>
-  <div id="search">
-    <% if current_user %>
-    <%= form_for @organization do |f| %>
-    <%= f.label :state %><br/>
-    <%= f.text_field :state, placeholder: :city%><br/>
-    <%= f.label :city %><br/>
-    <%= f.text_field :city, placeholder: :city%><br/>
-    <%= f.submit "submit", class: :submit %>
-  </div>
-  <div class="org-list-container">
-    <%= will_paginate @orgs %>
-  <table>
 
-    <tr>
-      <th>Organization</th>
-      <th>Location</th>
-      <th>Rating</th>
-    </tr>
-    <% @orgs.reverse.each do |org| %>
-    <tr>
-      <td><%= link_to org.name, organization_path(org) %></td>
-      <td> <%= org.city %></td>
-    <td> <%= org.score %>  </td>
-    <% end %>
-  <% end %>
-  </table>
-    <div id="map">
+      <section id="featured-services">
+        <% if current_user %>
+          <h2>Search for Organizations</h2>
+          <%= form_for @organization do |f| %>
+          <%= f.label :state %><br/>
+          <%= f.text_field :state, placeholder: :city%><br/>
+          <%= f.label :city %><br/>
+          <%= f.text_field :city, placeholder: :city%><br/>
+          <%= f.submit "Search", class: :submit %>
+          <% end %>
+          <%= will_paginate @orgs %>
+      </section>
+      <div class="org-list-container">
+        <table>
+            <tr>
+             <th><%= link_to "Organization", organizations_path(order: 'name')%></th>
+             <th><%= link_to "Location", organizations_path(order: 'city')%></th>
+             <th><%= link_to "Category", organizations_path(order: 'cat_name')%></th>
+             <th><%= link_to "Rank", organizations_path(order: 'score')%></th>
+            </tr>
+        <% @orgs.each do |org| %>
+        <tbody>
+          <tr>
+            <td id="first"><%= link_to org.name, organization_path(org) %></td>
+            <td> <%= org.city %></td>
+            <td > <%= image_tag(org.cause_image, class: 'cause-img') %></td>
+            <td > <%= org.score %></td>
+          </tr>
+        <tbody>
+        <% end %>
+      </table>
     </div>
+    <div id="map-container">
+    <div id="map"></div>
   </div>
-</div>
     <script>
-
       function iniMap() {
-
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: {lat: 39.024, lng: -104.887}
         });
-
-        // Create an array of alphabetical characters used to label the markers.
         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-        // Add some markers to the map.
-        // Note: The code uses the JavaScript Array.prototype.map() method to
-        // create an array of markers based on a given "locations" array.
-        // The map() method here has nothing to do with the Google Maps API.
         var markers = locations.map(function(location, i) {
           return new google.maps.Marker({
             position: location,
             label: labels[i % labels.length]
           });
         });
-
-        // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
       }

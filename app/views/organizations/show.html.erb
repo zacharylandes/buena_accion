@@ -1,23 +1,24 @@
 <div class ="container">
   <div class = "org-stats">
-      <% lat = @org.latitude %>
-      <% long = @org.longitude %>
-      <% score = @org.score %>
-    <h3> <%= @org.name %></h3>
-    <p>Score</p>
-    <div class="circle green" data-percent="<%=score.to_i%>"></div>
-    <p> Category   </p>
-    <p> <%=@org.cat_name %>  </p>
+    <h1> <%= @org.name %></h1>
+    <% lat = @org.latitude %>
+    <% long = @org.longitude %>
+    <% score = @org.score %>
+    <p>Charity Navigator Score</p>
+    <div class="rect green" data-percent="<%=score.to_i%>">
+    </div>
+    <p> Category -
+     <%=@org.cat_name %></p>
     <div  id="mission">
-        <p > Mission   </p>
-        <p id="mission-text"> <%=@org.mission %>  </p>
-      </div>
-    <p>  <%= image_tag(@org.cause_image)  %></p>
-  <p><%= link_to "Visit", @org.url %></p>
+      <p > Mission >  </p>
+      <p id="mission-text"> <%=@org.mission %>  </p>
+    </div>
+    <p><%= link_to "Website", @org.url %></p>
+
+    <p><%= link_to "Back to Organizations", organizations_path %></p>
   </div>
     <div id="map" >
     </div>
-    <p><%= link_to "Back to Organizations", organizations_path %></p>
   </div>
     <script>
       var lat = <%= lat  %>

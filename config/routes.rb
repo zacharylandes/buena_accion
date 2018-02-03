@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: "organizations#index"
+  root to: "homes#index"
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
@@ -8,5 +8,12 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   resources :organizations, only:[:index,:create,:show]
+
+  namespace :admin do
+    resources :dashboards
+    resources :needs
+  end
+
+  # get '/rank', to: 'organizations#rank', as: "rank"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

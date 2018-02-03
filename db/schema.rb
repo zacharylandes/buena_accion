@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131004358) do
+ActiveRecord::Schema.define(version: 20180201215528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "category_needs", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "need_id"
+    t.index ["category_id"], name: "index_category_needs_on_category_id"
+    t.index ["need_id"], name: "index_category_needs_on_need_id"
+  end
+
+  create_table "needs", force: :cascade do |t|
+    t.string "name"
+    t.bigint "category_id"
+    t.integer "amount"
+    t.bigint "organization_id"
+    t.index ["category_id"], name: "index_needs_on_category_id"
+    t.index ["organization_id"], name: "index_needs_on_organization_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -41,6 +61,11 @@ ActiveRecord::Schema.define(version: 20180131004358) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
   end
 
+  add_foreign_key "category_needs", "categories"
+  add_foreign_key "category_needs", "needs"
+  add_foreign_key "needs", "categories"
+  add_foreign_key "needs", "organizations"
 end
