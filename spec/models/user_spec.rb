@@ -27,6 +27,5 @@ describe User do
 
     expect(found_user.name).to eq('Jesse')
 
-
   end
 end

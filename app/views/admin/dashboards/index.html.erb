@@ -1,28 +1,50 @@
-<h1>admin place</h1>
-
-<div class= 'need-section'>
-  <% if current_user %>
-    <%= form_for [:admin, @need] do |f| %>
-    <%= f.label :name %><br/>
-    <%= f.text_field :name%><br/>
-    <%= f.label :category %><br/>
-    <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></br>
-    <%= f.label :amount %><br/>
-    <%= f.number_field :amount%><br/>
-    <%= f.submit "submit"%>
-    <% end %>
-  <% end %>
-
-  <div class = 'need-card-container'>
-  <% if @needs.count > 0 %>
-    <% @needs.each do |need| %>
-      <div class = 'need-card'>
-        <p><%= need.name %></p>
-        <p><%= need.category.name%></p>
-        <div class="rect red" data-percent="<%=need.amount%>">
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<div class = "admin-container">
+  <div class= 'org-form'>
+    <% if current_user.organizations.count < 1 %>
+      <%= form_for [@organization] do |f| %>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name%><br/>
+        <%= f.label :state %><br/>
+        <%= f.text_field :state%><br/>
+        <%= f.label :city %><br/>
+        <%= f.text_field :city%><br/>
+        <%= f.label :address %><br/>
+        <%= f.text_field :address %><br/>
+        <%= f.label :zipcode %><br/>
+        <%= f.number_field :zipcode %><br/>
+        <%= f.label :url %><br/>
+        <%= f.number_field :url %><br/>
+        <%= f.hidden_field :user_id, :value => current_user.id%>
+        <%= f.submit "Create Organization" %>
+        <% end %>
+      <% else %>
+        <% current_user.organizations.each do |org|%>
+          <h2><%=org.name%></h2>
+        <% end %>
+      <% end %>
+    </div>
+    <h2>Fill Out Your Organization's Needs below</h2>
+  <div class = "need-form">
+      <%= form_for [:admin, @need] do |f| %>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name%><br/>
+      <%= f.label :category %><br/>
+      <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></br>
+      <%= f.label :amount %><br/>
+      <%= f.number_field :amount%><br/>
+      <%= f.submit "submit"%>
+      <% end %>
   </div>
+  <div class = 'need-card-container'>
+    <% if @needs.count > 0 %>
+      <% @needs.each do |need| %>
+        <div class = 'need-card'>
+          <p><%= need.name %></p>
+          <p><%= need.category.name%></p>
+          <div class="rect red" data-percent="<%=need.amount%>">
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
 </div>

@@ -19,10 +19,13 @@
   </div>
     <div id="map" >
     </div>
+    <h3>This Organization's needs</h3>
     <% if @org.needs.count > 0 %>
-    <%=@org.needs.each do |need| %>
-    <%=need.name  %>
-    <%end   %>
+      <%=@org.needs.each do |need| %>
+      <%=need.name %>
+      <%end %>
+    <%end %>
+
   </div>
     <script>
       var lat = <%= lat  %>

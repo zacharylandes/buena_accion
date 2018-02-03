@@ -7,6 +7,11 @@ body {
   background-size: cover;
 }
 
+#field img{
+  height: 100%;
+  width: 100%;
+}
+
 header a:visited, header a {
 	color: #CAE1F1;
 	text-decoration: none;
@@ -76,9 +81,11 @@ tr{
   background-color: black;
 }
 .org-list-container{
-  margin: 0px 35em;
+  margin: 0px 14em;
 	display: flex;
 	flex-direction: row;
+  width: 45%;
+  /* overflow-x: auto; */
 	justify-content: center;
 }
 .org-stats{
@@ -130,8 +137,8 @@ tr{
   display:inline;
 }
  #map {
-  height: 350px;
-  width: 400px;
+  height: 250px;
+  width: 300px;
 	margin:40px;
   padding-bottom: 20px;
  }

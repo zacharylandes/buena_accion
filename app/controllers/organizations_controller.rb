@@ -9,15 +9,24 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def new
-    @organization = Organization.new(org_params)
-  end
-
   def create
-    state = params['organization']['state'].upcase
-    city = params['organization']['city'].downcase
-    response = CharityService.new.connection(ENV['client_id'],ENV['client_secret'],state,city)
-    redirect_to organizations_path
+    if current_admin?
+      address = [org_params['address'], org_params['state'].upcase, org_params['city'].downcase, org_params['zipcode']]
+      org = {
+        name: org_params['name'],
+        url: org_params['website'],
+        city: org_params['city'],
+        address: address,
+        user_id: params['organization'][:user_id]
+      }
+      Organization.create!(org)
+      redirect_to admin_dashboards_path
+    else
+      state = params['organization']['state'].upcase
+      city = params['organization']['city'].downcase
+      response = CharityService.new.connection(ENV['client_id'],ENV['client_secret'],state,city)
+      redirect_to organizations_path
+    end
   end
 
   def show
@@ -27,10 +36,9 @@ class OrganizationsController < ApplicationController
   private
 
 
-    def org_params
-        params.require(:organization).permit(:name, :state, :city, :zipcode)
-    end
+  def org_params
+      params.require(:organization).permit(:name, :state, :city, :zipcode, :address)
+  end
 
-org
 
 end

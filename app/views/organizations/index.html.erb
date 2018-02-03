@@ -2,14 +2,17 @@
       <section id="featured-services">
         <% if current_user %>
           <h2>Search for Organizations</h2>
-          <%= form_for @organization do |f| %>
-          <%= f.label :state %><br/>
-          <%= f.text_field :state, placeholder: :city%><br/>
-          <%= f.label :city %><br/>
-          <%= f.text_field :city, placeholder: :city%><br/>
-          <%= f.submit "Search", class: :submit %>
-          <% end %>
-          <%= will_paginate @orgs %>
+            <%= form_for @organization do |f| %>
+              <%= f.label :state %><br/>
+              <%= f.text_field :state, placeholder: :city%><br/>
+              <%= f.label :city %><br/>
+              <%= f.text_field :city, placeholder: :city%><br/>
+              <%= f.submit "Search", class: :submit %>
+            <% end %>
+            <%= will_paginate @orgs %>
+        <div id="map-container">
+          <div id="map"></div>
+        </div>
       </section>
       <div class="org-list-container">
         <table>
@@ -24,16 +27,13 @@
           <tr>
             <td id="first"><%= link_to org.name, organization_path(org) %></td>
             <td> <%= org.city %></td>
-            <td > <%= image_tag(org.cause_image, class: 'cause-img') %></td>
+            <td > <%= image_tag(org.cause_image, class: 'cause-img') if org.cause_image%></td>
             <td > <%= org.score %></td>
           </tr>
         <tbody>
         <% end %>
       </table>
     </div>
-    <div id="map-container">
-    <div id="map"></div>
-  </div>
     <script>
       function iniMap() {
         var map = new google.maps.Map(document.getElementById('map'), {

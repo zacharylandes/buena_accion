@@ -3,6 +3,7 @@ class Admin::DashboardsController < Admin::BaseController
     @need = Need.new
     @needs = Need.all
     @categories= Category.all
+    @organization = Organization.new 
   end
 
 end

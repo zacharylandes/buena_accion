@@ -3,5 +3,6 @@ class Organization < ApplicationRecord
   after_validation :geocode
 
   has_many :needs
+  belongs_to :user, optional: true
 
 end
