@@ -11,5 +11,4 @@ private
       params.require(:need).permit(:name, :category_id, :amount)
   end
 
-
 end

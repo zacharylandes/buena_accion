@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
   resources :sessions, only: [:create, :destroy]
-  resources :organizations, only:[:index,:create,:show]
+  resources :organizations, only:[:index,:create,:show, :new]
 
   namespace :admin do
     resources :dashboards

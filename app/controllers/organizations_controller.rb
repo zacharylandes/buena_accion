@@ -9,6 +9,10 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def new
+    @organization = Organization.new(org_params)
+  end
+
   def create
     state = params['organization']['state'].upcase
     city = params['organization']['city'].downcase
@@ -19,5 +23,14 @@ class OrganizationsController < ApplicationController
   def show
     @org = Organization.find(params[:id])
   end
+
+  private
+
+
+    def org_params
+        params.require(:organization).permit(:name, :state, :city, :zipcode)
+    end
+
+org
 
 end

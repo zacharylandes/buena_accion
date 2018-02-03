@@ -19,6 +19,10 @@
   </div>
     <div id="map" >
     </div>
+    <% if @org.needs.count > 0 %>
+    <%=@org.needs.each do |need| %>
+    <%=need.name  %>
+    <%end   %>
   </div>
     <script>
       var lat = <%= lat  %>
