@@ -3,13 +3,13 @@
   <% if current_user %>
     <h2>Search for Organizations</h2>
     <%= form_tag(organizations_path, method: :get) do %>
-      <%= label_tag :name %>
-      <%= text_field_tag :name, params[:name] %>
-      <%= label_tag :state %>
-      <%= text_field_tag :state, params[:state] %>
-      <%= label_tag :city %>
-      <%= text_field_tag :city, params[:city] %>
-      <%= submit_tag 'Search', name: nil %>
+    <p><%= label_tag :name %>
+       <%= text_field_tag :name, params[:name] %></p>
+    <p><%= label_tag :state %>
+       <%= text_field_tag :state, params[:state] %></p>
+    <p><%= label_tag :city %>
+       <%= text_field_tag :city, params[:city] %></p>
+    <p><%= submit_tag 'Search', name: nil %></p>
     <% end %>
   <div id="map-container">
     <div id="map">

@@ -158,7 +158,13 @@ tr{
 	margin:40px;
   padding-bottom: 20px;
  }
-
+.home{
+  margin-top:-10px;
+  width: 40px;
+}
+.home li:hover{
+  color: #18d26e;
+}
  #map-container{
    border-left: 2px solid white;
    position: fixed;
@@ -190,7 +196,7 @@ img{
 }
 
 a {
-  color: #18d26e;
+  color: white;
   transition: 0.5s;
 }
 
@@ -199,6 +205,7 @@ a:hover, a:active, a:focus {
   outline: none;
   text-decoration: none;
 }
+
 
 p {
   padding: 0;
@@ -248,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #header {
   padding: 30px 0;
-  height: 72px;
+  height: 52px;
   border-bottom: 2px solid white;
   position: fixed;
   background-color: black;
@@ -775,7 +782,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 14px;
   line-height: 24px;
   color: #fff;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }
 
 /* About Us Section
@@ -784,14 +791,23 @@ body.mobile-nav-active #mobile-nav-toggle {
 # Footer
 --------------------------------------------------------------*/
 #footer {
+  border-top: 2px solid white;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   background: #000;
-  height: 50px;
+  height: 70px;
   font-size: 14px;
   width: 100%;
   bottom: 0px;
   position:fixed;
+}
+
+footer a {
+  margin:30px;
+}
+
+.port{
+  width:40px;
 }

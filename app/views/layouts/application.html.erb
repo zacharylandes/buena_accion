@@ -2,17 +2,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Buena Accion</title>
+    <title>Buena Acci&oacuten</title>
       <meta charset="utf-8">
   <title>BizPage Bootstrap Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
-
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +22,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <link href="css/style.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Molengo&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Molengo&amp;subset=latin-ext" rel="stylesheet">
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <style media="screen">
@@ -40,11 +36,11 @@
       <% end %>
     <div class="container-fluid">
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Buena Accion</a></h1>
+        <h1><a href="#intro" class="scrollto">Buena Acci&oacuten</a></h1>
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="/organizations"> <i class="fas fa-home fa-2x"></i></a></li>
+          <li class ="home" ><a href="/organizations"> <%= image_tag("home.png") %></a></li>
             <% if current_user %>
               <li>Signed in as <strong><%= current_user.name %></strong></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
@@ -69,9 +65,13 @@
     </div>
     </section>
     <footer id="footer">
-      <a href="https://www.github.com/zacharylandes"><i class="fab fa-github fa-3x"></i></a>
-      <i class="fab fa-github fa-3x"></i>
-      <i class="fab fa-github fa-3x"></i>
+      <a href="https://www.github.com/zacharylandes" target = "_blank"><i class="fab fa-github fa-3x"></i></a>
+      <a href="https://www.linkedin.com/in/zacharylandes/"  target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+      <a href="mailto:zach.g.landes@gmail.com"  target="_blank"><i class="far fa-envelope fa-3x"></i></a>
+      <a href="https://www.zacharylandes.github.io" class = "port"><i class="fas fa-briefcase fa-3x"></i>
+
+</a>
+
    </footer>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
