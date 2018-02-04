@@ -21,17 +21,17 @@
       <tr>
        <th><%= link_to "Organization", organizations_path(order: 'name')%></th>
        <th><%= link_to "Location", organizations_path(order: 'city')%></th>
-       <th><%= link_to "Needs", organizations_path(order: 'need')%></th>
-       <th><%= link_to "Urgency", organizations_path(order: 'needs')%></th>
+       <th><%= link_to "Needs", organizations_path(order: 'needs.name')%></th>
+       <th><%= link_to "Urgency", organizations_path(order: 'needs.amount')%></th>
       </tr>
   <% @orgs.each do |org| %>
   <tbody>
     <tr>
       <td id="first"><%= link_to org.name, organization_path(org) %></td>
-      <td> <%= org.city %></td>
+      <td> <%= org.city.capitalize %></td>
       <% if !org.needs.empty? %>
       <td > <%= org.needs.first.name  %></td>
-      <td> <div class="rect green" data-percent="<%=org.needs.first.amount.to_i%>"></div>
+      <td> <div class="rect red" data-percent="<%=org.needs.first.amount.to_i%>"></div>
       </td>
       <% end %>
     </tr>

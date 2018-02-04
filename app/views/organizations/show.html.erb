@@ -1,10 +1,12 @@
+<% long = @org.longitude %>
+<% lat = @org.latitude %>
 <div class ="container">
   <div class = "org-stats">
-    <h1> <%= @org.name %></h1>
-    <h3> <%= @org.city %></h3>
 
-      <% lat = @org.latitude %>
-      <% long = @org.longitude %>
+    <h1> <%= @org.name %></h1>
+    <h3> <%= @org.city.capitalize %>, <%= @org.state.upcase %></h3>
+    <h3> <%= @org.address %></h3>
+
     <h3>This Organization's needs</h3></br>
     <div class = "need-list">
       <% if @org.needs.count > 0 %>

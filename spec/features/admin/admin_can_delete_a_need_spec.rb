@@ -10,7 +10,6 @@ describe "User visits dashboard page" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
         visit admin_dashboards_path
-        save_and_open_page
         fill_in "need[name]", with: "canned goods"
         select "food", :from => "need[category_id]"
         click_on 'Create Need'

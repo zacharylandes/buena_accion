@@ -8,10 +8,11 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
 
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,14 +39,12 @@
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
     <div class="container-fluid">
-
       <div id="logo" class="pull-left">
         <h1><a href="#intro" class="scrollto">Buena Accion</a></h1>
       </div>
-
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li class="menu-active"><a href="/organizations"> <i class="fas fa-home fa-2x"></i></a></li>
             <% if current_user %>
               <li>Signed in as <strong><%= current_user.name %></strong></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
@@ -53,15 +52,13 @@
               <li><%= link_to "Nonpofit Sign in", "/auth/google_oauth2?role=1" ,id: "sign_in" %></li>
               <li>  <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
             <% end %>
-          <li class="menu-has-children"><a href="">Drop Down</a>
+          <li class="menu-has-children"><a href="">Contact</a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+              <li><a href="https://www.github.com/zacharylandes" target="_blank">Github</a></li>
+              <li><a href="https://www.linkedin.com/in/zacharylandes/"  target="_blank">Linked In</a></li>
+              <li><a href="mailto:zach.g.landes@gmail.com"  target="_blank">Gmail</a></li>
             </ul>
           </li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -72,8 +69,10 @@
     </div>
     </section>
     <footer id="footer">
-      this indo
-    </footer>
+      <a href="https://www.github.com/zacharylandes"><i class="fab fa-github fa-3x"></i></a>
+      <i class="fab fa-github fa-3x"></i>
+      <i class="fab fa-github fa-3x"></i>
+   </footer>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>
