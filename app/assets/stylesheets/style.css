@@ -7,9 +7,10 @@ body {
   background-size: cover;
 }
 
-#field img{
-  height: 100%;
+#hands {
+  margin: 0px 35%;
   width: 100%;
+  hidden: 100%;
 }
 
 header a:visited, header a {

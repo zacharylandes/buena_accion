@@ -1,10 +1,10 @@
 class OrganizationsController < ApplicationController
 
   def index
-    @organization = Organization.new
     if params['order']
       @orgs = Organization.order("#{params['order']} DESC").paginate(:page => params[:page], :per_page => 30)
     else
+      @organization  = Organization.where()
       @orgs = Organization.order("city ASC").paginate(:page => params[:page], :per_page => 30)
     end
   end
