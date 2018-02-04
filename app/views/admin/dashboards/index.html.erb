@@ -26,6 +26,7 @@
           <%= link_to "Delete This Organization", organization_path(org), method: "delete" %>
         <% end %>
     </div>
+
     <h2>Fill Out Your Organization's Needs below</h2>
   <div class = "need-form">
     <%= form_for [:admin, @need] do |f| %>
@@ -35,7 +36,7 @@
       <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></p>
       <p><%= f.label :amount %>
       <%= f.number_field :amount%></p>
-      <%= f.hidden_field :organization_id, :value => Organization.find_by(user_id: params[:user_id]).id%>
+      <%= f.hidden_field :organization_id, :value => Organization.find_by(user_id: current_user.id).id %>
       <p><%= f.submit "Create Need"%></p>
     <% end %>
     <% end %>

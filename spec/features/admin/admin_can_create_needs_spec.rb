@@ -36,8 +36,8 @@ describe "User visits dashboard page" do
         click_on 'Create Need'
 
         visit organizations_path
-        save_and_open_page
 
+        expect
         expect(page).to have_content('76')
       end
     end

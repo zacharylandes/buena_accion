@@ -7,7 +7,6 @@ class OrganizationsController < ApplicationController
       @orgs = OrgSearchService.new.search(params)
     else
       @orgs = Organization.order("city ASC").paginate(:page => params[:page], :per_page => 30)
-      binding.pry
     end
   end
 

@@ -16,12 +16,12 @@ describe "admin visits  dashboard  page" do
       fill_in "organization[zipcode]", with: "95616"
       fill_in "organization[address]", with: "505 pole line rd."
 
-
       click_on 'Create Organization'
 
       expect(Organization.count).to eq(1)
       expect(current_path).to eq(admin_dashboards_path)
       expect(page).to have_content("#{Organization.last.name}")
+      expect(admin.organizations.count).to eq(1)
       end
     end
   end

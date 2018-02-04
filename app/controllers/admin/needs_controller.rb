@@ -1,6 +1,6 @@
 class Admin::NeedsController < Admin::BaseController
   def create
-    Need.create(need_params)
+    need = Need.create(need_params)
     redirect_to admin_dashboards_path
   end
 
