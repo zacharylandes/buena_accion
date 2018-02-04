@@ -37,8 +37,9 @@ describe "User visits dashboard page" do
 
         visit organizations_path
 
-        expect
-        expect(page).to have_content('76')
+        # binding.pry
+        expect(page).to have_content('vegetables')
+
       end
     end
  end
