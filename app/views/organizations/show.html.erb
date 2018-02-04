@@ -1,36 +1,32 @@
 <div class ="container">
   <div class = "org-stats">
     <h1> <%= @org.name %></h1>
-    <% lat = @org.latitude %>
-    <% long = @org.longitude %>
-    <% score = @org.score %>
-    <p>Charity Navigator Score</p>
-    <div class="rect green" data-percent="<%=score.to_i%>">
-    </div>
-    <p> Category -
-     <%=@org.cat_name %></p>
-    <div  id="mission">
-      <p > Mission >  </p>
-      <p id="mission-text"> <%=@org.mission %>  </p>
-    </div>
-    <p><%= link_to "Website", @org.url %></p>
+    <h3> <%= @org.city %></h3>
 
+      <% lat = @org.latitude %>
+      <% long = @org.longitude %>
+    <h3>This Organization's needs</h3></br>
+    <div class = "need-list">
+      <% if @org.needs.count > 0 %>
+        <%@org.needs.each do |need| %>
+          <p><%=need.name %></p>
+          <div class="rect green" data-percent="<%=need.amount.to_i%>">
+          </div>
+        <%end %>
+      <%end %>
+    </div>
     <p><%= link_to "Back to Organizations", organizations_path %></p>
   </div>
-    <div id="map" >
+    <div  class = "show-map">
+      <div id="map" >
+      </div>
     </div>
-    <h3>This Organization's needs</h3>
-    <% if @org.needs.count > 0 %>
-      <%=@org.needs.each do |need| %>
-      <%=need.name %>
-      <%end %>
-    <%end %>
+</div>
 
-  </div>
-    <script>
-      var lat = <%= lat  %>
-      var long = <%= long  %>
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcWT4c5ykv24rEk2w9kRrCaUOfNCf6is&callback=initMap">
-    </script>
+<script>
+  var lat = <%= lat  %>
+  var long = <%= long  %>
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcWT4c5ykv24rEk2w9kRrCaUOfNCf6is&callback=initMap">
+</script>

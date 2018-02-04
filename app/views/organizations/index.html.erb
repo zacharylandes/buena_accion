@@ -1,66 +1,71 @@
 
-      <section id="featured-services">
-        <% if current_user %>
-          <h2>Search for Organizations</h2>
-            <%= form_for @organization do |f| %>
-              <%= f.label :state %><br/>
-              <%= f.text_field :state, placeholder: :city%><br/>
-              <%= f.label :city %><br/>
-              <%= f.text_field :city, placeholder: :city%><br/>
-              <%= f.submit "Search", class: :submit %>
-            <% end %>
-            <%= will_paginate @orgs %>
-        <div id="map-container">
-          <div id="map"></div>
-        </div>
-      </section>
-      <div class="org-list-container">
-        <table>
-            <tr>
-             <th><%= link_to "Organization", organizations_path(order: 'name')%></th>
-             <th><%= link_to "Location", organizations_path(order: 'city')%></th>
-             <th><%= link_to "Category", organizations_path(order: 'cat_name')%></th>
-             <th><%= link_to "Rank", organizations_path(order: 'score')%></th>
-            </tr>
-        <% @orgs.each do |org| %>
-        <tbody>
-          <tr>
-            <td id="first"><%= link_to org.name, organization_path(org) %></td>
-            <td> <%= org.city %></td>
-            <td > <%= image_tag(org.cause_image, class: 'cause-img') if org.cause_image%></td>
-            <td > <%= org.score %></td>
-          </tr>
-        <tbody>
-        <% end %>
-      </table>
+<section id="featured-services">
+  <% if current_user %>
+    <h2>Search for Organizations</h2>
+    <%= form_tag(organizations_path, method: :get) do %>
+      <%= label_tag :name %>
+      <%= text_field_tag :name, params[:name] %>
+      <%= label_tag :state %>
+      <%= text_field_tag :state, params[:state] %>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, params[:city] %>
+      <%= submit_tag 'Search', name: nil %>
+    <% end %>
+  <div id="map-container">
+    <div id="map">
     </div>
-    <script>
-      function iniMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: {lat: 39.024, lng: -104.887}
-        });
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-          });
-        });
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      }
-      var locations = [
-        <% @orgs.each do |org| %>
-          <% if org.latitude %>
-            {lat: <%= org.latitude %>, lng: <%= org.longitude %>},
-          <% end %>
-        <% end  %>
-      ]
-    </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcWT4c5ykv24rEk2w9kRrCaUOfNCf6is&callback=iniMap">
-    </script>
+  </div>
+</section>
+<div class="org-list-container">
+  <table>
+      <tr>
+       <th><%= link_to "Organization", organizations_path(order: 'name')%></th>
+       <th><%= link_to "Location", organizations_path(order: 'city')%></th>
+       <th><%= link_to "Needs", organizations_path(order: 'need')%></th>
+       <th><%= link_to "Urgency", organizations_path(order: 'needs')%></th>
+      </tr>
+  <% @orgs.each do |org| %>
+  <tbody>
+    <tr>
+      <td id="first"><%= link_to org.name, organization_path(org) %></td>
+      <td> <%= org.city %></td>
+      <% if !org.needs.empty? %>
+      <td > <%= org.needs.first.name  %></td>
+      <td> <div class="rect green" data-percent="<%=org.needs.first.amount.to_i%>"></div>
+      </td>
       <% end %>
+    </tr>
+  <tbody>
+  <% end %>
+</table>
+</div>
+
+<script>
+
+  function iniMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: {lat: 39.024, lng: -104.887}
+    });
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var markers = locations.map(function(location, i) {
+      return new google.maps.Marker({
+        position: location,
+        label: labels[i % labels.length]
+      });
+    });
+    var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+  }
+  var locations = [
+    <% @orgs.each do |org| %>
+      <% if org.latitude %>
+        {lat: <%= org.latitude %>, lng: <%= org.longitude %>},
+      <% end %>
+    <% end  %>
+  ]
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVcWT4c5ykv24rEk2w9kRrCaUOfNCf6is&callback=iniMap"></script>
+<% end %>

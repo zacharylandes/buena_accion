@@ -3,9 +3,11 @@ class OrganizationsController < ApplicationController
   def index
     if params['order']
       @orgs = Organization.order("#{params['order']} DESC").paginate(:page => params[:page], :per_page => 30)
+    elsif params['name'] || params['city'] || params['state']
+      @orgs = OrgSearchService.new.search(params)
     else
-      @organization  = Organization.where()
       @orgs = Organization.order("city ASC").paginate(:page => params[:page], :per_page => 30)
+      binding.pry
     end
   end
 
@@ -21,11 +23,6 @@ class OrganizationsController < ApplicationController
       }
       Organization.create!(org)
       redirect_to admin_dashboards_path
-    else
-      state = params['organization']['state'].upcase
-      city = params['organization']['city'].downcase
-      response = CharityService.new.connection(ENV['client_id'],ENV['client_secret'],state,city)
-      redirect_to organizations_path
     end
   end
 
@@ -33,6 +30,11 @@ class OrganizationsController < ApplicationController
     @org = Organization.find(params[:id])
   end
 
+  def destroy
+    org = Organization.find(params[:id])
+    org.destroy
+    redirect_to admin_dashboards_path
+  end
   private
 
 

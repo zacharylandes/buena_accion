@@ -7,6 +7,13 @@ body {
   background-size: cover;
 }
 
+.need-list{
+  display: flex;
+  flex-direction: row;
+}
+.show-map {
+  right:0;
+}
 #hands {
   margin: 0px 35%;
   width: 100%;
@@ -46,16 +53,24 @@ tr{
 }
 
 .need-card-container{
+  height: 300px;
 	margin:30px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-
+.need-form {
+  border-bottom: 2px solid white;
+}
 .need-card{
-  width: 100px;
-  box-shadow: 2px 2px 0px 0px #6A0808;
+  display: flex;
+  /* text-align: center; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  box-shadow: 2px 2px 0px 0px white;
   border: 2px solid #D47474;
 	border-radius: 10px;
   margin: 10px 30px;
