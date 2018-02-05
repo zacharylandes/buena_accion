@@ -1,5 +1,5 @@
 <div class = "admin-container">
-  <div class= 'org-form'>
+  <div class= 'form'>
     <% if current_user.organizations.count < 1 %>
       <h3>Create your Organization</h3>
       <%= form_for [@organization] do |f| %>

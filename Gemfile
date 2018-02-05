@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'bootstrap', '~> 4.0.0'
-gem 'webpacker'
+gem 'webpacker', '~> 3.0'
+
 gem 'will_paginate', '~> 3.1.0'
 
 # gem 'google-webfonts-rails'

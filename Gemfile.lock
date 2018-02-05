@@ -270,7 +270,7 @@ DEPENDENCIES
   vcr
   web-console (>= 3.3.0)
   webmock
-  webpacker
+  webpacker (~> 3.0)
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
