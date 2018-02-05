@@ -9,12 +9,10 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="../../assets/images/favicon-32x32.png" sizes="32x32" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
@@ -46,7 +44,7 @@
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
             <% else %>
               <li><%= link_to "Nonpofit Sign in", "/auth/google_oauth2?role=1" ,id: "sign_in" %></li>
-              <li>  <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+              <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
             <% end %>
           <li class="menu-has-children"><a href="">Contact</a>
             <ul>
@@ -56,10 +54,9 @@
             </ul>
           </li>
         </ul>
-      </nav><!-- #nav-menu-container -->
+      </nav>
     </div>
   </header>
-
     <div class='index-section'>
         <%= yield %>
     </div>

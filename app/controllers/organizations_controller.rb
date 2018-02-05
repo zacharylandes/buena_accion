@@ -3,9 +3,10 @@ class OrganizationsController < ApplicationController
   def index
     if params['order']
       @orgs = OrgSearchService.new.order(params['order'])
-    elsif params['name'] || params['city'] || params['state']
+    elsif params['name'] || params['city'] || params['state'] || params['needs']
       @orgs = OrgSearchService.new.search(params)
     else
+
       @orgs = Organization.order("city ASC").paginate(:page => params[:page], :per_page => 30)
     end
   end

@@ -10,6 +10,8 @@ class OrgSearchService
     elsif  !param['city'].empty?
       city =  param['city'].capitalize
       Organization.where('city LIKE ?', "%#{city}%")
+    else
+      Organization.joins(:needs).where('needs.name LIKE ?', "%#{param['needs']}%")
     end
   end
 
