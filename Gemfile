@@ -9,6 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 gem 'bootstrap', '~> 4.0.0'
+gem 'webpacker'
 gem 'will_paginate', '~> 3.1.0'
 gem 'skeleton-rails', :git => 'https://github.com/helios-technologies/skeleton-rails'
 
