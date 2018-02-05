@@ -1,34 +1,30 @@
 <div class = "admin-container">
   <div class= 'org-form'>
     <% if current_user.organizations.count < 1 %>
-      <h2>Create your Organization</h2>
+      <h3>Create your Organization</h3>
       <%= form_for [@organization] do |f| %>
         <p><%= f.label :name%>
-          <%= f.text_field :name%></p>
+          <%= f.text_field :name , :required => true%></p>
         <p><%= f.label :state%>
-        <%= f.text_field :state%></p>
+        <%= f.text_field :state, :required => true%></p>
         <p><%= f.label :city%>
-        <%= f.text_field :city%></p>
+        <%= f.text_field :city, :required => true%></p>
         <p><%= f.label :address%>
-        <%= f.text_field :address %></p>
+        <%= f.text_field :address, :required => true %></p>
         <p><%= f.label :zipcode%>
-        <%= f.text_field :zipcode %></p>
-        <p><%= f.label :url %>
-        <%= f.text_field :url %></p>
+        <%= f.text_field :zipcode, :required => true %></p>
         <%= f.hidden_field :user_id, :value => current_user.id%>
         <%= f.submit "Create Organization" %>
       <% end %>
     <% else %>
         <% current_user.organizations.each do |org|%>
-          <h2><%=org.name%></h2>
-          <h3><%=org.state%></h3>
-          <h3><%=org.city%></h3>
-          <%= link_to "Delete This Organization", organization_path(org), method: "delete" %>
+          <h2><%=org.name.capitalize%> </h2>> <span><%=org.state.upcase%></span>> <span><%=org.city.capitalize%></span>
+          <p><%= link_to "Delete #{org.name}", organization_path(org), method: "delete" %></p>
         <% end %>
     </div>
 
-    <h2>Fill Out Your Organization's Needs below</h2>
   <div class = "need-form">
+    <h4>Fill Out Your Organization's Needs</h4>
     <%= form_for [:admin, @need] do |f| %>
       <p><%= f.label :name %>
       <%= f.text_field :name%></p>
@@ -42,7 +38,6 @@
     <% end %>
   </div>
 
-</div>
   <div class = 'need-card-container'>
     <% if !@needs.nil? %>
       <% @needs.each do |need| %>
@@ -56,3 +51,4 @@
       <% end %>
     <% end %>
   </div>
+</div>

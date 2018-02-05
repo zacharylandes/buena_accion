@@ -6,7 +6,6 @@ class OrganizationsController < ApplicationController
     elsif params['name'] || params['city'] || params['state'] || params['needs']
       @orgs = OrgSearchService.new.search(params)
     else
-
       @orgs = Organization.order("city ASC").paginate(:page => params[:page], :per_page => 30)
     end
   end
@@ -15,6 +14,7 @@ class OrganizationsController < ApplicationController
       address = [org_params['address'].downcase, org_params['state'].upcase, org_params['city'].downcase, org_params['zipcode']]
       org = {
         name: org_params['name'].downcase,
+        state: org_params['state'].downcase,
         city: org_params['city'].downcase,
         address: address,
         user_id: params['organization'][:user_id]

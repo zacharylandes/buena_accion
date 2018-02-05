@@ -32,4 +32,11 @@ describe 'user can search organizations' do
 
       expect(Organization.first).to  have_attributes(name: "Vegan Outreach")
   end
+    it  'shows the organizations that were searched by city ' do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+      visit '/organizations'
+      fill_in 'needs', with: "vegan"
+      click_on 'Search'
+      expect(Organization.first).to  have_attributes(name: "Vegan Outreach")
+  end
 end

@@ -6,6 +6,20 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.admin-container{
+  margin-top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+.org-form{
+  top:0;
+  width: 300px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 .need-list{
   display: flex;
@@ -60,12 +74,9 @@ tr{
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.need-form {
-  border-bottom: 2px solid white;
-}
+
 .need-card{
   display: flex;
-  /* text-align: center; */
   flex-direction: column;
   justify-content: center;
   align-items: center;

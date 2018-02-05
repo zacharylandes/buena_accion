@@ -38,7 +38,7 @@
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class ="home" ><a href="/organizations"> <%= image_tag("home.png") %></a></li>
+          <li class ="home" ><a><i class="fas fa-home fa-2x"></i></a></li>
             <% if current_user %>
               <li>Signed in as <strong><%= current_user.name %></strong></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
