@@ -2,21 +2,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Buena Accion</title>
+    <title>Buena Acci&oacuten</title>
       <meta charset="utf-8">
   <title>BizPage Bootstrap Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link rel="icon" type="image/png" href="../../assets/images/favicon-32x32.png" sizes="32x32" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
@@ -24,9 +20,8 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <link href="css/style.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Molengo&amp;subset=latin-ext" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Molengo&amp;subset=latin-ext" rel="stylesheet">
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <style media="screen">
@@ -38,42 +33,43 @@
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
     <div class="container-fluid">
-
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Buena Accion</a></h1>
+        <h1><a href="#intro" class="scrollto">Buena Acci&oacuten</a></h1>
       </div>
-
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li class ="home" ><a href="/organizations"> <%= image_tag("home.png") %></a></li>
             <% if current_user %>
               <li>Signed in as <strong><%= current_user.name %></strong></li>
               <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
             <% else %>
               <li><%= link_to "Nonpofit Sign in", "/auth/google_oauth2?role=1" ,id: "sign_in" %></li>
-              <li>  <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+              <li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
             <% end %>
-          <li class="menu-has-children"><a href="">Drop Down</a>
+          <li class="menu-has-children"><a href="">Contact</a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+              <li><a href="https://www.github.com/zacharylandes" target="_blank">Github</a></li>
+              <li><a href="https://www.linkedin.com/in/zacharylandes/"  target="_blank">Linked In</a></li>
+              <li><a href="mailto:zach.g.landes@gmail.com"  target="_blank">Gmail</a></li>
             </ul>
           </li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
-      </nav><!-- #nav-menu-container -->
+      </nav>
     </div>
   </header>
-
     <div class='index-section'>
         <%= yield %>
     </div>
     </section>
     <footer id="footer">
-      this indo
-    </footer>
+      <a href="https://www.github.com/zacharylandes" target = "_blank"><i class="fab fa-github fa-3x"></i></a>
+      <a href="https://www.linkedin.com/in/zacharylandes/"  target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+      <a href="mailto:zach.g.landes@gmail.com"  target="_blank"><i class="far fa-envelope fa-3x"></i></a>
+      <a href="https://www.zacharylandes.github.io" class = "port"><i class="fas fa-briefcase fa-3x"></i>
+
+</a>
+
+   </footer>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>

@@ -15,8 +15,8 @@ describe 'user can view an organization' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(User.first)
       visit '/organizations'
-      fill_in 'organization[state]', with: "ca"
-      fill_in 'organization[city]', with: "winters"
+      fill_in 'state', with: "ca"
+      fill_in 'city', with: "winters"
       click_on 'Search'
 
       first("td").first(:link).click

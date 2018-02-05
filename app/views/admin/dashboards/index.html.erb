@@ -1,50 +1,58 @@
 <div class = "admin-container">
   <div class= 'org-form'>
     <% if current_user.organizations.count < 1 %>
+      <h2>Create your Organization</h2>
       <%= form_for [@organization] do |f| %>
-        <%= f.label :name %><br/>
-        <%= f.text_field :name%><br/>
-        <%= f.label :state %><br/>
-        <%= f.text_field :state%><br/>
-        <%= f.label :city %><br/>
-        <%= f.text_field :city%><br/>
-        <%= f.label :address %><br/>
-        <%= f.text_field :address %><br/>
-        <%= f.label :zipcode %><br/>
-        <%= f.number_field :zipcode %><br/>
-        <%= f.label :url %><br/>
-        <%= f.number_field :url %><br/>
+        <p><%= f.label :name%>
+          <%= f.text_field :name%></p>
+        <p><%= f.label :state%>
+        <%= f.text_field :state%></p>
+        <p><%= f.label :city%>
+        <%= f.text_field :city%></p>
+        <p><%= f.label :address%>
+        <%= f.text_field :address %></p>
+        <p><%= f.label :zipcode%>
+        <%= f.text_field :zipcode %></p>
+        <p><%= f.label :url %>
+        <%= f.text_field :url %></p>
         <%= f.hidden_field :user_id, :value => current_user.id%>
         <%= f.submit "Create Organization" %>
-        <% end %>
-      <% else %>
+      <% end %>
+    <% else %>
         <% current_user.organizations.each do |org|%>
           <h2><%=org.name%></h2>
+          <h3><%=org.state%></h3>
+          <h3><%=org.city%></h3>
+          <%= link_to "Delete This Organization", organization_path(org), method: "delete" %>
         <% end %>
-      <% end %>
     </div>
+
     <h2>Fill Out Your Organization's Needs below</h2>
   <div class = "need-form">
-      <%= form_for [:admin, @need] do |f| %>
-      <%= f.label :name %><br/>
-      <%= f.text_field :name%><br/>
-      <%= f.label :category %><br/>
-      <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></br>
-      <%= f.label :amount %><br/>
-      <%= f.number_field :amount%><br/>
-      <%= f.submit "submit"%>
-      <% end %>
+    <%= form_for [:admin, @need] do |f| %>
+      <p><%= f.label :name %>
+      <%= f.text_field :name%></p>
+      <p><%= f.label :category %>
+      <%= f.select :category_id, options_for_select( @categories.collect{ |category| ["#{category.name}", category.id] } ), class: 'form-control' %></p>
+      <p><%= f.label :amount %>
+      <%= f.number_field :amount%></p>
+      <%= f.hidden_field :organization_id, :value => Organization.find_by(user_id: current_user.id).id %>
+      <p><%= f.submit "Create Need"%></p>
+    <% end %>
+    <% end %>
   </div>
+
+</div>
   <div class = 'need-card-container'>
-    <% if @needs.count > 0 %>
+    <% if !@needs.nil? %>
       <% @needs.each do |need| %>
         <div class = 'need-card'>
           <p><%= need.name %></p>
           <p><%= need.category.name%></p>
           <div class="rect red" data-percent="<%=need.amount%>">
-          </div>
+        </div>
+        <p> <%= link_to "Delete", admin_need_path(need), method: "delete" %>   </p>
         </div>
       <% end %>
     <% end %>
-    </div>
-</div>
+  </div>
